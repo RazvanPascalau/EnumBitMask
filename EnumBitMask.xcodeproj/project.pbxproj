@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D99EDD031A7AC7C8006B5235 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D99EDD021A7AC7C8006B5235 /* main.cpp */; };
+		D9C9D9D01C28AF0B0070D507 /* EnumBitMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C9D9CE1C28AF0B0070D507 /* EnumBitMask.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		D99EDCFF1A7AC7C8006B5235 /* EnumBitMask */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EnumBitMask; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99EDD021A7AC7C8006B5235 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D9C9D9CE1C28AF0B0070D507 /* EnumBitMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumBitMask.cpp; sourceTree = "<group>"; };
+		D9C9D9CF1C28AF0B0070D507 /* EnumBitMask.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnumBitMask.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				D99EDD021A7AC7C8006B5235 /* main.cpp */,
+				D9C9D9CE1C28AF0B0070D507 /* EnumBitMask.cpp */,
+				D9C9D9CF1C28AF0B0070D507 /* EnumBitMask.hpp */,
 			);
 			path = EnumBitMask;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9C9D9D01C28AF0B0070D507 /* EnumBitMask.cpp in Sources */,
 				D99EDD031A7AC7C8006B5235 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +208,13 @@
 		D99EDD071A7AC7C8006B5235 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -209,6 +222,13 @@
 		D99EDD081A7AC7C8006B5235 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -232,6 +252,7 @@
 				D99EDD081A7AC7C8006B5235 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
