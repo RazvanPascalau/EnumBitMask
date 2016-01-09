@@ -38,4 +38,34 @@ TEST_CASE("basic enum bitmask usage", "[EnumBitMask]")
         REQUIRE(testBitmask.isSet(TestEnum::thirdVal) == true);
         REQUIRE(testBitmask.isSet(TestEnum::fourthVal) == false);
     }
+
+    SECTION("we check the single assignment setter")
+    {
+        EnumBitMask<TestEnum> testBitmask{ TestEnum::thirdVal };
+        REQUIRE(testBitmask.isSet(TestEnum::firstVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::secondVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::thirdVal) == true);
+        REQUIRE(testBitmask.isSet(TestEnum::fourthVal) == false);
+
+        testBitmask.set(TestEnum::firstVal);
+        REQUIRE(testBitmask.isSet(TestEnum::firstVal) == true);
+        REQUIRE(testBitmask.isSet(TestEnum::secondVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::thirdVal) == true);
+        REQUIRE(testBitmask.isSet(TestEnum::fourthVal) == false);
+    }
+
+    SECTION("we check the multiple assignment setter")
+    {
+        EnumBitMask<TestEnum> testBitmask;
+        REQUIRE(testBitmask.isSet(TestEnum::firstVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::secondVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::thirdVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::fourthVal) == false);
+
+        testBitmask.set(TestEnum::secondVal, TestEnum::fourthVal);
+        REQUIRE(testBitmask.isSet(TestEnum::firstVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::secondVal) == true);
+        REQUIRE(testBitmask.isSet(TestEnum::thirdVal) == false);
+        REQUIRE(testBitmask.isSet(TestEnum::fourthVal) == true);
+    }
 }

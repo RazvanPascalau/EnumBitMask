@@ -24,6 +24,8 @@ public:
     bool areSet(EnumType enumFlag, Params... nextEnumFlags) const;
 
     void set(EnumType flag);
+    template <typename... Params>
+    void set(EnumType enumFlag, Params... nextEnumFlags);
 
 private:
     using EnumUnderlyingType = typename std::underlying_type<EnumType>::type;
@@ -48,6 +50,14 @@ template <typename EnumType>
 void EnumBitMask<EnumType>::set(EnumType flag)
 {
     mBits |= static_cast<EnumUnderlyingType>(flag);
+}
+
+template <typename EnumType>
+template <typename... Params>
+void EnumBitMask<EnumType>::set(EnumType enumFlag, Params... nextEnumFlags)
+{
+    set(enumFlag);
+    set(nextEnumFlags...);
 }
 
 template <typename EnumType>
