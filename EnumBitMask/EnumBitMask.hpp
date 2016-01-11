@@ -21,17 +21,20 @@ public:
 
     bool isSet(EnumType enumFlag) const;
     template <typename... Params>
-    bool areSet(EnumType enumFlag, Params... nextEnumFlags) const;
+    bool isSet(EnumType enumFlag, Params... nextEnumFlags) const;
 
     void set(EnumType flag);
     template <typename... Params>
     void set(EnumType enumFlag, Params... nextEnumFlags);
 
+    void clear(EnumType flag);
+    template <typename... Params>
+    void clear(EnumType enumFlag, Params... nextEnumFlags);
+
+    typename std::underlying_type<EnumType>::type getRawValue() const { return mBits; };
+
 private:
     using EnumUnderlyingType = typename std::underlying_type<EnumType>::type;
-
-    bool areSet(EnumType checkedEnum) const; // base version to break recursion
-
     EnumUnderlyingType mBits = 0;
 };
 
@@ -44,6 +47,20 @@ template <typename EnumType>
 EnumBitMask<EnumType>::EnumBitMask(const std::initializer_list<EnumType>& initFlags)
 {
     std::for_each(std::begin(initFlags), std::end(initFlags), [this, &initFlags](EnumType enumFlag) { set(enumFlag); });
+}
+
+template <typename EnumType>
+void EnumBitMask<EnumType>::clear(EnumType flag)
+{
+    mBits &= ~(static_cast<EnumUnderlyingType>(flag));
+}
+
+template <typename EnumType>
+template <typename... Params>
+void EnumBitMask<EnumType>::clear(EnumType enumFlag, Params... nextEnumFlags)
+{
+    clear(enumFlag);
+    clear(nextEnumFlags...);
 }
 
 template <typename EnumType>
@@ -68,14 +85,8 @@ bool EnumBitMask<EnumType>::isSet(EnumType checkedEnum) const
 }
 
 template <typename EnumType>
-bool EnumBitMask<EnumType>::areSet(EnumType checkedEnum) const
-{
-    return isSet(checkedEnum);
-}
-
-template <typename EnumType>
 template <typename... Params>
-bool EnumBitMask<EnumType>::areSet(EnumType checkedEnum, Params... nextEnums) const
+bool EnumBitMask<EnumType>::isSet(EnumType checkedEnum, Params... nextEnums) const
 {
-    return isSet(checkedEnum) && areSet(nextEnums...);
+    return isSet(checkedEnum) && isSet(nextEnums...);
 }
